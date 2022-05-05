@@ -19,4 +19,5 @@ library(lubridate)    # To handle dates and times
 
 pigs_BE <- st_as_sf(wildschwein_BE_2056, coords = c("E", "N"), crs = 2056, remove = FALSE)
 pigs_BE
+```
 
