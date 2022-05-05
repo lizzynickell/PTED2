@@ -38,6 +38,65 @@ pigsgr <- pigs %>% group_by(TierID) %>%
 summarise(n=n())
 pigsgr
 
+euclidean <- function(a, b) sqrt(sum((a - b)^2))
 
+steps <- mutate(pigs, steplength = as.integer(euclidean(E,N)))
+steps
+
+speed <- mutate(steps, speed = as.integer(steplength/timelag))
+speed
+```
+Task 4
+```
+caro <- read_csv("caro60.txt")
+nrow(caro)
+
+seq3 <- seq(from =1, to =200, by =3)
+seq6 <- seq(from =1, to =200, by =6)
+seq9 <- seq(from =1, to =200, by =9)
+
+caro_3 <- caro[seq3,]
+caro_6 <- caro[seq6,]
+caro_9 <- caro[seq9,]
+
+
+pigs1 <- mutate(caro,timelag = as.integer(difftime(lead(DatetimeUTC),DatetimeUTC, unit="secs")))
+
+pigs3 <- mutate(caro_3,timelag = as.integer(difftime(lead(DatetimeUTC),DatetimeUTC, unit="secs")))
+pigs6 <- mutate(caro_6,timelag = as.integer(difftime(lead(DatetimeUTC),DatetimeUTC, unit="secs")))
+pigs9 <- mutate(caro_9,timelag = as.integer(difftime(lead(DatetimeUTC),DatetimeUTC, unit="secs")))
+
+steps1 <- mutate(pigs1, steplength = as.integer(euclidean(E,N)))
+steps
+speed1 <- mutate(steps1, speed = as.integer(steplength/timelag))
+speed
+
+steps3 <- mutate(pigs3, steplength = as.integer(euclidean(E,N)))
+steps
+speed3 <- mutate(steps3, speed = as.integer(steplength/timelag))
+speed
+
+steps6 <- mutate(pigs6, steplength = as.integer(euclidean(E,N)))
+steps
+speed6 <- mutate(steps6, speed = as.integer(steplength/timelag))
+speed
+
+steps9 <- mutate(pigs9, steplength = as.integer(euclidean(E,N)))
+steps
+speed9 <- mutate(steps9, speed = as.integer(steplength/timelag))
+speed
+```
+Graphs
+```
+ggplot()+
+  geom_point(data=speed1, aes(E, N),color='red')+
+  geom_line()+
+  geom_line(data=speed3, aes(E, N),color='green')
+  
+  
+  geom_point(data=speed6, aes(E, N),color='blue')+
+  geom_point(data=speed9, aes(E, N),color='yellow')
+  
+```
 
 
