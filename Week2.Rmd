@@ -17,7 +17,27 @@ library(sf)           # to handle spatial vector data
 library(terra)        # To handle raster data
 library(lubridate)    # To handle dates and times
 
+wildschwein_BE <- read_delim("PTED2/wildschwein_BE_2056.csv",",") # adjust path
+
+
+
 pigs_BE <- st_as_sf(wildschwein_BE_2056, coords = c("E", "N"), crs = 2056, remove = FALSE)
 pigs_BE
+
+pigs <- mutate(pigs_BE,timelag = as.integer(difftime(lead(DatetimeUTC),DatetimeUTC, unit="secs")))
+pigs
+
 ```
+How many individuals were tracked? 3
+For how long were the individual tracked? Are there gaps? About a year, no gaps visible.
+Were all individuals tracked concurrently or sequentially? Concurrently
+What is the temporal sampling interval between the locations? 
+
+````
+pigsgr <- pigs %>% group_by(TierID) %>% 
+summarise(n=n())
+pigsgr
+
+
+
 
