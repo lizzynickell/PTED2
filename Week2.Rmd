@@ -98,5 +98,16 @@ ggplot()+
   geom_point(data=speed9, aes(E, N),color='yellow')
   
 ```
+Rolling Window
+```
+library(zoo)
 
+example <- rnorm(10)
+rollmean(example,k = 3,fill = NA,align = "left")
+
+rollmean(example,k = 4,fill = NA,align = "left")
+
+roll3 <- rollmean(speed1$speed, k = 3)
+roll5 <- rollmean(speed1$speed, k = 5)
+roll5
 
