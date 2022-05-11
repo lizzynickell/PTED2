@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```
+``` {r}
 library(readr)        # to import tabular data (e.g. csv)
 library(dplyr)        # to manipulate (tabular) data
 library(ggplot2)      # to visualize data
@@ -33,7 +33,7 @@ For how long were the individual tracked? Are there gaps? About a year, no gaps 
 Were all individuals tracked concurrently or sequentially? Concurrently
 What is the temporal sampling interval between the locations? 
 
-````
+```{r}
 pigsgr <- pigs %>% group_by(TierID) %>% 
 summarise(n=n())
 pigsgr
@@ -47,7 +47,7 @@ speed <- mutate(steps, speed = as.integer(steplength/timelag))
 speed
 ```
 Task 4
-```
+```{r}
 caro <- read_csv("caro60.txt")
 nrow(caro)
 
@@ -87,7 +87,7 @@ speed9 <- mutate(steps9, speed = as.integer(steplength/timelag))
 speed
 ```
 Graphs
-```
+```{r}
 ggplot()+
   geom_point(data=speed1, aes(E, N),color='red')+
   geom_line()+
@@ -99,7 +99,7 @@ ggplot()+
   
 ```
 Rolling Window
-```
+```{r}
 library(zoo)
 
 example <- rnorm(10)
