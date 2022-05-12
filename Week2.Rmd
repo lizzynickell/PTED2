@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-``` {r}
+```{r}
 library(readr)        # to import tabular data (e.g. csv)
 library(dplyr)        # to manipulate (tabular) data
 library(ggplot2)      # to visualize data
@@ -110,4 +110,5 @@ rollmean(example,k = 4,fill = NA,align = "left")
 roll3 <- rollmean(speed1$speed, k = 3)
 roll5 <- rollmean(speed1$speed, k = 5)
 roll5
+```
 
